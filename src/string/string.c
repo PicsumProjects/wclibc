@@ -74,3 +74,6 @@ char *strcpy(char *dest __restrict, const char *src __restrict)
 {
   return (char *)memcpy(dest, src, strlen(src));
 };
+
+int strncmp(const char *p1, const char *p2, size_t size)
+{ return memcmp(p1, p2, size) };
