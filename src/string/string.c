@@ -1,6 +1,7 @@
 #include <string.h>
 #include <malloc.h>
 #include <stdint.h>
+#include <errno.h>
 #if __wasm64__
 #define ULONG_MAX 18446744073709551615
 #else
