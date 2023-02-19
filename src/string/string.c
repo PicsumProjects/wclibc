@@ -1,6 +1,18 @@
 #include <string.h>
 #include <malloc.h>
 #include <stdint.h>
+#include <limits.h>
+
+void *memset(void *p1, int val, size_t size)
+{
+  char val_char = (char)val;
+  size_t i = size;
+  char *ptr = (char *)p1
+  while(i--)
+    ptr[i] = val_char;
+  return ptr;
+};
+  
 
 void *memcpy(void *p1 __restrict, const void *p2 __restrict, size_t size)
 {
@@ -76,4 +88,73 @@ char *strcpy(char *dest __restrict, const char *src __restrict)
 };
 
 int strncmp(const char *p1, const char *p2, size_t size)
-{ return memcmp(p1, p2, size) };
+{ return memcmp(p1, p2, size); };
+
+size_t strnlen(const char *buf, size_t maxsize)
+{
+  size_t i = 0;
+  while(i++) if(!(buf[i]) || i == maxsize) return i;
+};
+
+#define ISSPACE(x) x == 0x20
+#define ISUPPER(x) ((x >= 0x41) && (x < 0x60))
+#define ISLOWER(x) ((x >= 0x61) && (x < 0x7B))
+#define ISDIGIT(x) ((x >= 0x30) && (x < 0x3A))
+#define ISALPHA(x) (ISUPPER(x) || ISLOWER(x))
+// from gcc
+unsigned long
+strtoul(const char *nptr, char **endptr, register int base)
+{
+	register const char *s = nptr;
+	register unsigned long acc;
+	register int c;
+	register unsigned long cutoff;
+	register int neg = 0, any, cutlim;
+
+	/*
+	 * See strtol for comments as to the logic used.
+	 */
+	do {
+		c = *s++;
+	} while (ISSPACE(c));
+	if (c == '-') {
+		neg = 1;
+		c = *s++;
+	} else if (c == '+')
+		c = *s++;
+	if ((base == 0 || base == 16) &&
+	    c == '0' && (*s == 'x' || *s == 'X')) {
+		c = s[1];
+		s += 2;
+		base = 16;
+	}
+	if (base == 0)
+		base = c == '0' ? 8 : 10;
+	cutoff = (unsigned long)ULONG_MAX / (unsigned long)base;
+	cutlim = (unsigned long)ULONG_MAX % (unsigned long)base;
+	for (acc = 0, any = 0;; c = *s++) {
+		if (ISDIGIT(c))
+			c -= '0';
+		else if (ISALPHA(c))
+			c -= ISUPPER(c) ? 'A' - 10 : 'a' - 10;
+		else
+			break;
+		if (c >= base)
+			break;
+		if (any < 0 || acc > cutoff || (acc == cutoff && c > cutlim))
+			any = -1;
+		else {
+			any = 1;
+			acc *= base;
+			acc += c;
+		}
+	}
+	if (any < 0) {
+		acc = ULONG_MAX;
+		errno = ERANGE;
+	} else if (neg)
+		acc = -acc;
+	if (endptr != 0)
+		*endptr = (char *) (any ? s - 1 : nptr);
+	return (acc);
+}
