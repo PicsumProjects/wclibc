@@ -1,6 +1,6 @@
 #ifndef LIBC_H
 #define LIBC_H
-
+#define hidden 
 #include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
