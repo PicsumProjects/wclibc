@@ -2,7 +2,7 @@
 #include <malloc.h>
 #include <stdint.h>
 
-void *memcpy(void *p1 restrict, void *p2 restrict, size_t size)
+void *memcpy(void *p1 __restrict, const void *p2 __restrict, size_t size)
 {
   if((p1 == NULL) || (p2 == NULL)) return NULL;
   if(size < 4)
