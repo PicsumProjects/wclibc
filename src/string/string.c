@@ -33,14 +33,14 @@ void *memmove(void *dest, void *src, size_t n)
     > ((uintptr_t)dest))
   ) {
     void *temp = malloc(n);
-    memcpy(temp, src);
-    memcpy(dest, temp);
+    memcpy(temp, src, n);
+    memcpy(dest, temp, n);
     free(temp);
     return dest;
   } else return memcpy(dest, src, n);
 };
 
-int memcmp(void *p1, void *p2, size_t n)
+int memcmp(const void *p1, const void *p2, size_t size)
 {
   if((p1 == NULL) || (p2 == NULL)) return NULL;
   if(size < 4)
@@ -48,13 +48,13 @@ int memcmp(void *p1, void *p2, size_t n)
     size_t i = size;
     char *ptr1 = (char *)p1;
     char *ptr2 = (char *)p2;
-    while(i--) if(ptr1[i] != ptr2[i]) return false;
+    while(i--) if(ptr1[i] != ptr2[i]) return 0;
   } else {
     long *ptr1 = (long *)p1;
     long *ptr2 = (long *)p2;
     size_t newsize = (size - (size % sizeof(long))) / 4;
     size_t i = newsize;
-    while(i--) if(ptr1[i] != ptr2[i]) return false;
+    while(i--) if(ptr1[i] != ptr2[i]) return 0;
     return memcmp((void *)(((uintptr_t)ptr1) + newsize), (void *)(((uintptr_t)ptr2) + newsize), size - newsize);
   };
 };
