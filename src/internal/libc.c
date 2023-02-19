@@ -1,5 +1,9 @@
 #include "libc.h"
 
+# define weak_alias(name, aliasname) _weak_alias (name, aliasname)
+# define _weak_alias(name, aliasname) \
+  extern __typeof (name) aliasname __attribute__ ((weak, alias (#name)));
+
 struct __libc __libc;
 
 size_t __hwcap;
