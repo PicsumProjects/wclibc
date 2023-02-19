@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdint.h>
-#include "lock.h"
-#include "fork_impl.h"
+#include <lock.h>
+
+#define LOCK(x)
+#define UNLOCK(x)
 
 /*
 this code uses the same lagged fibonacci generator as the
