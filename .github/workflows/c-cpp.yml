@@ -18,9 +18,9 @@ jobs:
     - name: addpkgs
       run: sudo apt-get install lld clang
     - name: build
-      run: ./build.sh wasm32; ls # ./build.sh wasm64
+      run: ./build.sh wasm32; # ./build.sh wasm64
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
-    - run: git push origin main
+    - run: ls; git push origin main
 
