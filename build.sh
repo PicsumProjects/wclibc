@@ -1,3 +1,4 @@
+set -e
 build_file() {
 of=$RANDOM.ll
 clang $2 -I./include -std=c99 -nostdinc -ffreestanding -fexcess-precision=standard -frounding-math -Wa,--noexecstack -ffunction-sections -fdata-sections -w -Wno-pointer-to-int-cast --target=$1 --emit-llvm -c -S -o $of
