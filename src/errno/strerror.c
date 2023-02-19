@@ -1,7 +1,6 @@
 #include <errno.h>
 #include <stddef.h>
 #include <string.h>
-#include "locale_impl.h"
 
 /* mips has one error code outside of the 8-bit range due to a
  * historical typo, so we just remap it. */
@@ -27,7 +26,7 @@ static const unsigned short errmsgidx[] = {
 #undef E
 };
 
-char *__strerror_l(int e, locale_t loc)
+char *__strerror_l(int e)
 {
 	const char *s;
 #ifdef EDQUOT_ORIG
@@ -36,12 +35,12 @@ char *__strerror_l(int e, locale_t loc)
 #endif
 	if (e >= sizeof errmsgidx / sizeof *errmsgidx) e = 0;
 	s = (char *)&errmsgstr + errmsgidx[e];
-	return (char *)LCTRANS(s, LC_MESSAGES, loc);
+	return s;
 }
 
 char *strerror(int e)
 {
-	return __strerror_l(e, CURRENT_LOCALE);
+	return __strerror_l(e);
 }
 
 weak_alias(__strerror_l, strerror_l);
