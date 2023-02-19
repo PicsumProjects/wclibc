@@ -74,11 +74,3 @@ char *strcpy(char *dest __restrict, const char *src __restrict)
 {
   return (char *)memcpy(dest, src, strlen(src));
 };
-
-int strinstr(const char *haystack, const char *needle)
-{
-  size_t haystack_dimensions = strlen(haystack);
-  size_t i = haystack_dimensions;
-  size_t needlewidth = strlen(needle);
-  while(i--) if(!((i + needlewidth) > haystack_dimensions))) if(memcmp(((uintptr_t)haystack) + i, needle, needlewidth) return 1; 
-};
