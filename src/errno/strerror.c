@@ -10,6 +10,8 @@
 #define EDQUOT 109
 #endif
 
+#include <libc.h>
+
 static const struct errmsgstr_t {
 #define E(n, s) char str##n[sizeof(s)];
 #include "__strerror.h"
