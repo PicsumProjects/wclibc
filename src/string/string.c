@@ -1,13 +1,17 @@
 #include <string.h>
 #include <malloc.h>
 #include <stdint.h>
-#include <limits.h>
+#if __wasm64__
+#define ULONG_MAX 18446744073709551615
+#else
+#define ULONG_MAX 4294967295
+#endif
 
 void *memset(void *p1, int val, size_t size)
 {
   char val_char = (char)val;
   size_t i = size;
-  char *ptr = (char *)p1
+  char *ptr = (char *)p1;
   while(i--)
     ptr[i] = val_char;
   return ptr;
