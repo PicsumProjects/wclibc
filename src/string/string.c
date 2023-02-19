@@ -24,7 +24,7 @@ void *memcpy(void *p1 restrict, void *p2 restrict, size_t size)
   return p1;
 };
 
-void *memmove(void *dest, void *src, size_t n) 
+void *memmove(void *dest, const void *src, size_t n) 
 {
   if(
     ((((uintptr_t)dest) + n)
@@ -70,12 +70,12 @@ int strcmp(const char *str1, const char *str2)
   return memcmp(str1, str2, strlen(str1));
 };
 
-char *strcpy(const char *dest, const char *src)
+char *strcpy(char *dest __restrict, char *src __restrict)
 {
   return (char *)memcpy(dest, src, strlen(src));
 };
 
-int strstr(const char *haystack, const char *needle)
+int strinstr(const char *haystack, const char *needle)
 {
   size_t haystack_dimensions = strlen(haystack);
   size_t i = haystack_dimensions;
