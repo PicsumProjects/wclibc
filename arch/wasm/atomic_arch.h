@@ -151,3 +151,4 @@ static inline void a_crash()
 }
 
 #endif
+#endif
