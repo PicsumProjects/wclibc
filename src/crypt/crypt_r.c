@@ -1,4 +1,5 @@
 #include <crypt.h>
+#include <libc.h>
 
 char *__crypt_r(const char *key, const char *salt, struct crypt_data *data)
 {
