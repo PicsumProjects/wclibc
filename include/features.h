@@ -17,7 +17,7 @@
 #endif
 
 #if __STDC_VERSION__ >= 199901L
-#define __restrict restrict
+#define __restrict 
 #elif !defined(__GNUC__)
 #define __restrict
 #endif
