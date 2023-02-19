@@ -1,6 +1,6 @@
 #ifndef _LIBM_H
 #define _LIBM_H
-
+#define hidden
 #include <stdint.h>
 #include <float.h>
 #include <math.h>
