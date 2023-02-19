@@ -16,6 +16,6 @@ jobs:
     - name: set-executable
       run: chmod +x ./build.sh
     - name: addpkgs
-      run: sudo apt-get install lld-8 clang
+      run: sudo apt-get install lld clang
     - name: build
       run: ./build.sh
