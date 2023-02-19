@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: set-executable
+      run: chmod +x ./build.sh
+    - name: addpkgs
+      run: sudo apt-get install lld-8 clang
+    - name: build
+      run: ./build.sh
