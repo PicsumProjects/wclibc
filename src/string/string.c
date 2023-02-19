@@ -70,7 +70,7 @@ int strcmp(const char *str1, const char *str2)
   return memcmp(str1, str2, strlen(str1));
 };
 
-char *strcpy(char *dest __restrict, char *src __restrict)
+char *strcpy(char *dest __restrict, const char *src __restrict)
 {
   return (char *)memcpy(dest, src, strlen(src));
 };
