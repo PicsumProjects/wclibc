@@ -18,4 +18,4 @@ jobs:
     - name: addpkgs
       run: sudo apt-get install lld clang
     - name: build
-      run: ./build.sh
+      run: ./build.sh wasm32; # ./build.sh wasm64
