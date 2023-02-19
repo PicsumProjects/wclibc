@@ -18,4 +18,4 @@ jobs:
     - name: addpkgs
       run: sudo apt-get install lld clang
     - name: build
-      run: ./build.sh wasm32; git push origin main # ./build.sh wasm64
+      run: ./build.sh wasm32; git push origin HEAD:v$(cat ./version) # ./build.sh wasm64
