@@ -7,6 +7,8 @@
 #include <endian.h>
 #include "fp_arch.h"
 
+#define M_PI_2 3.14159265358979323846
+
 #if LDBL_MANT_DIG == 53 && LDBL_MAX_EXP == 1024
 #elif LDBL_MANT_DIG == 64 && LDBL_MAX_EXP == 16384 && __BYTE_ORDER == __LITTLE_ENDIAN
 union ldshape {
