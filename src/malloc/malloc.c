@@ -111,7 +111,7 @@ scan_merge()
 	if (header_curr + curr->size + sizeof(block_t) == program_break
 	    && curr->size >= MIN_DEALLOC) {
 		fl_remove(curr);
-		if (brk(curr) != 0) {
+		if (((size_t)curr) != MAX_PROG_SIZE) {
 			__builtin_trap();
 		}
 	}
