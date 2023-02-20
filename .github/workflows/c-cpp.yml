@@ -19,6 +19,7 @@ jobs:
       run: sudo apt-get install lld clang
     - name: build
       run: ./build.sh wasm32; # ./build.sh wasm64
+    - name: push
       uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
