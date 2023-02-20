@@ -11,11 +11,11 @@ typedef struct block {
 }		block_t;
 
 #ifndef ALLOC_UNIT
-#define ALLOC_UNIT 3 * sysconf(_SC_PAGESIZE)
+#define ALLOC_UNIT /* 3 * sysconf(_SC_PAGESIZE) */ 196608
 #endif
 
 #ifndef MIN_DEALLOC
-#define MIN_DEALLOC 1 * sysconf(_SC_PAGESIZE)
+#define MIN_DEALLOC /* 1 * sysconf(_SC_PAGESIZE) */ 65536
 #endif
 
 #define BLOCK_MEM(ptr) ((void *)((unsigned long)ptr + sizeof(block_t)))
@@ -190,15 +190,4 @@ free(void *ptr)
 {
 	fl_add(BLOCK_HEADER(ptr));
 	scan_merge();
-}
-
-void
-_malloc_cleanup()
-{
-	if (head) {
-		if (brk(head) != 0) {
-			__builtin_trap();
-		}
-	}
-	head = NULL;
 }
