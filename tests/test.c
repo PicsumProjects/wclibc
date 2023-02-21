@@ -44,7 +44,7 @@ static unsigned char const stackblur_shr[255] =
     24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24, 24
 };
 
-void stackblurJob(size_t img,         ///< list format of input image data
+void stackblurJob(unsigned char *img, ///< list format of input image data
                   unsigned int w,     ///< image width
                   unsigned int h,     ///< image height
                   unsigned int rds,   ///< blur intensity (should be in 0..252 range)
