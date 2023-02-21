@@ -109,7 +109,7 @@ void stackblurJob(unsigned char *img, ///< list format of input image data
             src_index = xp + y * w; // img.pix_ptr(xp, y);
             dst_index = y * w; // img.pix_ptr(0, y);
             for (x = 0; x < w; x++) {
-                obj[dst_index] = (sum * mul_sum) >> shr_sum
+                obj[dst_index] = (sum * mul_sum) >> shr_sum;
                 dst_index += 1;
 
                 sum -= sum_out;
