@@ -206,6 +206,12 @@ void stackblurJob(unsigned char *img, ///< list format of input image data
     }
 }
 
+size_t doMalloc(size_t size)
+{ return (size_t)malloc(size); }
+
+void doFree(size_t ptr)
+{ free(ptr); }
+
 size_t blurImage(size_t img, unsigned short w, unsigned short h, unsigned int radius)
 {
   unsigned char *outputImg = (unsigned char *)malloc(w * h * 4);
