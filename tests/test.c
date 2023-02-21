@@ -206,14 +206,14 @@ void stackblurJob(size_t img,         ///< list format of input image data
     }
 }
 
-size_t blurImage(size_t img, unsigned short w, unsigned short h)
+size_t blurImage(size_t img, unsigned short w, unsigned short h, unsigned int radius)
 {
   unsigned char *outputImg = (unsigned char *)malloc(w * h * 4);
   memcpy(outputImg, img, w * h * 4);
   unsigned char *stack = (unsigned char *)malloc((radius * 2) + 1);
   /* no multithreading yet */
-  stackblurJob(obj, w, h, radius, 1, 0, 1, stack);
-  stackblurJob(obj, w, h, radius, 1, 0, 2, stack);
+  stackblurJob(outputImg, w, h, radius, 1, 0, 1, stack);
+  stackblurJob(outputImg, w, h, radius, 1, 0, 2, stack);
   free(stack);
   return (size_t)outputImg;
 };
