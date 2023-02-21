@@ -1,2 +1,3 @@
-# wclibc
-Wasm libc for non-emscripten compilers
+# WCLibC
+
+A compact C standard library for non-emscripten compilers. (This can also be used with Emscripten)
