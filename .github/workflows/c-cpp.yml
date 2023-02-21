@@ -18,7 +18,7 @@ jobs:
     - name: addpkgs
       run: sudo apt-get install lld clang
     - name: build
-      run: ./build.sh wasm32; ./update_ver.sh; export VERSION=$(cat version) # ./build.sh wasm64
+      run: chmod +x *.sh; ./build.sh wasm32; ./update_ver.sh; export VERSION=$(cat version) # ./build.sh wasm64
     - name: push
       uses: marvinpinto/action-automatic-releases@v1.2.1
       with:
