@@ -4,6 +4,12 @@ async function createModule() {
 };
 
 let module = null; 
+const canvas = document.querySelector("#canvas");
+const ctx = canvas.getContext("2d");
+const button = document.querySelector("#button");
+const offscreencanv = new OffscreenCanvas(canvas.width, canvas.height);
+const octx = offscreencanv.getContext("2d");
+const img = document.querySelector("#img");
 
 async function blurWASM(data, radius) {
   if(!module) await createModule();
@@ -16,3 +22,10 @@ async function blurWASM(data, radius) {
   module.instance.exports.dodoFree(resultPtr);
 };
 
+async function blurcanv(radius = 5) {
+  octx.drawImage(img, 0, 0);
+  let data = await blurWASM(octx.getImageData(0, 0, img.width, img.height), radius);
+  ctx.putImageData(data);
+};
+
+button.addEventListener("click", blurcanv);
