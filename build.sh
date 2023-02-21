@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 extraflag=
 if [[ "$1" == "wasm64" ]]; then extraflag=-D__wasm64__; fi
