@@ -206,6 +206,19 @@ void stackblurJob(unsigned char *img, ///< list format of input image data
     }
 }
 
+size_t blendImages(size_t img1, size_t img2, unsigned short w, unsigned short h)
+{
+    size_t i = w * h * 4;
+    unsigned char *data = (unsigned char *)malloc(i);
+    unsigned char *i1 = (unsigned char *)img1;
+    unsigned char *i2 = (unsigned char *)img2;
+    
+    while(i--)
+        data[i] = (i1 >> 1) + (i2 >> 1);
+    
+    return (size_t)data;
+};
+
 size_t doMalloc(size_t size)
 { return (size_t)malloc(size); }
 
