@@ -1,6 +1,6 @@
 async function createModule() {
   let file = (await fetch("./wclibc-test-wasm32.wasm"));
-  module = WebAssembly.instantiateStreaming(file);
+  module = await  WebAssembly.instantiateStreaming(file);
 };
 
 let module = null; 
