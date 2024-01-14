@@ -18,7 +18,7 @@ void *memcpy(void *restrict dest, const void *restrict src, size_t n)
 	} else {
 		unsigned char *d = (unsigned char *)dest;
 		const unsigned char *s = (const unsigned char *)src;
-		size_t i = n-1;
+		size_t i = n;
 		while(i--) d[i] = s[i];
 	};
 
